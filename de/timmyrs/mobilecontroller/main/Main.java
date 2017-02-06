@@ -1,9 +1,11 @@
 package de.timmyrs.mobilecontroller.main;
 
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
+import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,17 +13,30 @@ import java.util.Enumeration;
 
 public class Main
 {
-	protected static final boolean debug = false;
 	private static final String version = "1.3";
+	protected static boolean debug = false;
 	protected static ArrayList<KeyPresser> presser = new ArrayList<>();
 
-	protected static void main(String[] args)
+	public static void main(String[] args)
 	{
 		KeyResolver.load();
 		new Listener();
-		Main.log("i This is Mobile Controller " + version + (debug ? " [Debug Build]" : "") + " by timmyRS");
+		Main.log("i This is Mobile Controller " + version + " by timmyRS");
+		if(args.length > 0 && args[0].equals("--debug"))
+		{
+			debug = true;
+			Main.log("i You are in debug mode");
+		}
 		try
 		{
+			if(Main.debug || ! Desktop.isDesktopSupported())
+			{
+				Main.log("i Navigate to http://localhost:56839 on this device for management");
+			} else
+			{
+				Desktop.getDesktop().browse(new URI("http://localhost:56839"));
+				Main.log("i The management interface has been opened");
+			}
 			int i = 0;
 			Enumeration<NetworkInterface> n = NetworkInterface.getNetworkInterfaces();
 			for(; n.hasMoreElements(); )
@@ -53,14 +68,11 @@ public class Main
 				{
 					Main.log("i Try to find out which one works on your mobile");
 				}
-				Main.log("i And open http://localhost:56839 in your browser for management");
 			}
 		} catch(Exception e)
 		{
-			if(debug)
-			{
-				e.printStackTrace();
-			}
+			e.printStackTrace();
+			System.exit(0);
 		}
 	}
 

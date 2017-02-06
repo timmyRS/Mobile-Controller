@@ -4,35 +4,35 @@ import java.awt.*;
 
 public class KeyPresser extends Thread
 {
-	private int key=0;
+	private int key = 0;
 	private Robot robot;
-	private boolean running=true;
+	private boolean running = true;
 
-	public KeyPresser(int key)
+	protected KeyPresser(int key)
 	{
-		this.key=key;
+		this.key = key;
 		try
 		{
-			robot=new Robot();
-		} catch (Exception e)
+			robot = new Robot();
+		} catch(Exception e)
 		{
 			if(Main.debug)
 			{
 				e.printStackTrace();
 			}
 		}
-		Thread t=new Thread(this);
+		Thread t = new Thread(this);
 		t.start();
 	}
 
-	public void end()
+	protected void end()
 	{
-		running=false;
+		running = false;
 		robot.keyRelease(key);
 		Main.presser.remove(Main.presser.indexOf(this));
 	}
 
-	public int getKey()
+	protected int getKey()
 	{
 		return key;
 	}
@@ -46,7 +46,7 @@ public class KeyPresser extends Thread
 			{
 				robot.keyPress(key);
 				Thread.sleep(85);
-			} catch (Exception e)
+			} catch(Exception e)
 			{
 				if(Main.debug)
 				{

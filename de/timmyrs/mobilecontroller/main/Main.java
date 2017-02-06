@@ -11,11 +11,11 @@ import java.util.Enumeration;
 
 public class Main
 {
-	public static final String version = "1.3";
-	public static final boolean debug = true;
-	public static ArrayList<KeyPresser> presser = new ArrayList<>();
+	protected static final boolean debug = false;
+	private static final String version = "1.3";
+	protected static ArrayList<KeyPresser> presser = new ArrayList<>();
 
-	public static void main(String[] args)
+	protected static void main(String[] args)
 	{
 		KeyResolver.load();
 		new Listener();
@@ -64,7 +64,7 @@ public class Main
 		}
 	}
 
-	public static String readFile(String path)
+	protected static String readFile(String path)
 	{
 		String ret = null;
 		try
@@ -89,7 +89,7 @@ public class Main
 		return ret;
 	}
 
-	public static void log(String str)
+	protected static void log(String str)
 	{
 		System.out.println("[" + new SimpleDateFormat("HH:mm:ss").format(new Date()) + "] " + str);
 	}

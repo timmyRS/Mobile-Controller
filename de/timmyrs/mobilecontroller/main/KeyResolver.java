@@ -5,12 +5,12 @@ import java.util.HashMap;
 
 public class KeyResolver
 {
-	public static HashMap<String,Integer> keys=new HashMap<>();
+	protected static HashMap<String,Integer> keys = new HashMap<>();
 
-	public static void load()
+	protected static void load()
 	{
 		keys.clear();
-		HashMap<String,Integer> defaultKeys=new HashMap<>();
+		HashMap<String,Integer> defaultKeys = new HashMap<>();
 		defaultKeys.put("lu", 38);
 		defaultKeys.put("ll", 39);
 		defaultKeys.put("ld", 40);
@@ -30,24 +30,24 @@ public class KeyResolver
 		defaultKeys.put("b7", 55);
 		defaultKeys.put("b8", 56);
 		defaultKeys.put("b9", 57);
-		String text=Main.readFile("config.txt");
-		int fixed=0;
-		if(text!=null)
+		String text = Main.readFile("config.txt");
+		int fixed = 0;
+		if(text != null)
 		{
 			for(String line : Main.readFile("config.txt").split("\n"))
 			{
-				String[] arr=line.trim().split("=");
-				if(arr.length==2)
+				String[] arr = line.trim().split("=");
+				if(arr.length == 2)
 				{
-					boolean valid=false;
+					boolean valid = false;
 					for(String key : defaultKeys.keySet())
 					{
 						if(key.equals(arr[0]))
 						{
-							valid=true;
+							valid = true;
 						}
 					}
-					if(true)
+					if(valid)
 					{
 						keys.put(arr[0], Integer.valueOf(arr[1]));
 					} else
@@ -57,38 +57,38 @@ public class KeyResolver
 				}
 			}
 		}
-		if(fixed>0)
+		if(fixed > 0)
 		{
 			save();
-			Main.log("i Removed "+fixed+" useless entries from config");
-			fixed=0;
+			Main.log("i Removed " + fixed + " useless entries from config");
+			fixed = 0;
 		}
 		for(String k : defaultKeys.keySet())
 		{
-			if(!keys.containsKey(k))
+			if(! keys.containsKey(k))
 			{
 				keys.put(k, defaultKeys.get(k));
 				fixed++;
 			}
 		}
-		if(fixed>0)
+		if(fixed > 0)
 		{
 			save();
-			Main.log("i Added "+fixed+" required entries to config");
+			Main.log("i Added " + fixed + " required entries to config");
 		}
 	}
 
-	public static void save()
+	protected static void save()
 	{
 		try
 		{
-			PrintWriter writer=new PrintWriter("config.txt", "UTF-8");
+			PrintWriter writer = new PrintWriter("config.txt", "UTF-8");
 			for(String key : keys.keySet())
 			{
-				writer.println(key+"="+keys.get(key));
+				writer.println(key + "=" + keys.get(key));
 			}
 			writer.close();
-		} catch (Exception e)
+		} catch(Exception e)
 		{
 			if(Main.debug)
 			{

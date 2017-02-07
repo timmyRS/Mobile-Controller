@@ -14,7 +14,7 @@ public class Listener extends Thread
 
 	protected Listener() throws java.io.IOException
 	{
-		Listener.socket = new ServerSocket(56839);
+		socket = new ServerSocket(56839);
 		Thread t = new Thread(this);
 		t.start();
 	}
@@ -99,14 +99,14 @@ public class Listener extends Thread
 			}
 		} else if(path.equals("/jquery.js"))
 		{
-			String s = Main.readFile("html/jquery.js");
+			String s = Main.readResource("html/jquery.js");
 			if(s != null)
 			{
 				return new String[]{"200", s, "text/html"};
 			}
 		} else if(path.equals("/"))
 		{
-			String s = Main.readFile("html/index.html");
+			String s = Main.readResource("html/index.html");
 			if(s != null)
 			{
 				return new String[]{"200", s, "text/html"};

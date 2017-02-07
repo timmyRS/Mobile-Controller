@@ -3,6 +3,7 @@ package de.timmyrs.mobilecontroller.main;
 import java.awt.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.InputStreamReader;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.URI;
@@ -13,9 +14,53 @@ import java.util.Enumeration;
 
 public class Main
 {
-	private static final String version = "1.3.1-Dev";
+	private static final String version = "1.4-Dev";
 	protected static boolean debug = false;
 	protected static ArrayList<KeyPresser> presser = new ArrayList<>();
+
+	protected static String readBufferedReader(BufferedReader br)
+	{
+		String ret = null;
+		try
+		{
+			StringBuilder sb = new StringBuilder();
+			String line = br.readLine();
+			while(line != null)
+			{
+				sb.append(line);
+				sb.append(System.lineSeparator());
+				line = br.readLine();
+			}
+			ret = sb.toString();
+		} catch(Exception e)
+		{
+			if(debug)
+			{
+				e.printStackTrace();
+			}
+		}
+		return ret;
+	}
+
+	protected static String readFile(String path)
+	{
+		try
+		{
+			return readBufferedReader(new BufferedReader(new FileReader(path)));
+		} catch(Exception e)
+		{
+			if(debug)
+			{
+				Main.log("! Couldn't read file " + path);
+			}
+		}
+		return null;
+	}
+
+	protected static void log(String str)
+	{
+		System.out.println("[" + new SimpleDateFormat("HH:mm:ss").format(new Date()) + "] " + str);
+	}
 
 	public static void main(String[] args)
 	{
@@ -76,33 +121,18 @@ public class Main
 		}
 	}
 
-	protected static String readFile(String path)
+	protected static String readResource(String resource)
 	{
-		String ret = null;
 		try
 		{
-			BufferedReader br = new BufferedReader(new FileReader(path));
-			StringBuilder sb = new StringBuilder();
-			String line = br.readLine();
-			while(line != null)
-			{
-				sb.append(line);
-				sb.append(System.lineSeparator());
-				line = br.readLine();
-			}
-			ret = sb.toString();
+			return readBufferedReader(new BufferedReader(new InputStreamReader(Main.class.getResource(resource).openStream())));
 		} catch(Exception e)
 		{
 			if(debug)
 			{
-				Main.log("! Couldn't read file " + path);
+				e.printStackTrace();
 			}
 		}
-		return ret;
-	}
-
-	protected static void log(String str)
-	{
-		System.out.println("[" + new SimpleDateFormat("HH:mm:ss").format(new Date()) + "] " + str);
+		return null;
 	}
 }

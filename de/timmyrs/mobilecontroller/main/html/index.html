@@ -1,0 +1,273 @@
+<!DOCTYPE html5>
+<html>
+<head>
+    <title>Mobile Controller by timmyRS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+		body{font-family:Roboto,sans-serif;padding:0 10px;margin:0;text-align:center;background:#000;color:#fff}
+		h1{font-weight:300}h1 small{font-size:20px}h1,p{margin:5px 0}
+		.specific{display:none}
+
+		.specific-mobile{position:fixed;top:0;left:0;width:100%;height:100%}
+		.warning{position:fixed;top:0;left:0;width:100%;height:100%;background:#000}
+		.warning-fullscreen{z-index:9}.warning-portrait{z-index:10}@media(orientation:landscape){.warning-portrait{display:none}}
+		.button{z-index:2;position:fixed;background:#fff}
+		.button-lu{left:calc(25% - 32px);top:14%;width:64px;height:27%}
+		.button-ll{left:5%;top:calc(50% - 32px);width:15%;height:64px}
+		.button-ld{left:calc(25% - 32px);bottom:14%;width:64px;height:27%}
+		.button-lr{left:30%;top:calc(50% - 32px);width:15%;height:64px}
+		.button-ru{right:calc(25% - 32px);top:calc(50% - 96px);width:64px;height:64px}
+		.button-rl{right:calc(25% + 32px);top:calc(50% - 32px);width:64px;height:64px}
+		.button-rd{right:calc(25% - 32px);bottom:calc(50% - 96px);width:64px;height:64px}
+		.button-rr{right:calc(25% - 96px);top:calc(50% - 32px);width:64px;height:64px}
+		.button-b1{right:384px;bottom:0;width:32px;height:32px}
+		.button-b2{right:336px;bottom:0;width:32px;height:32px}
+		.button-b3{right:288px;bottom:0;width:32px;height:32px}
+		.button-b4{right:240px;bottom:0;width:32px;height:32px}
+		.button-b5{right:192px;bottom:0;width:32px;height:32px}
+		.button-b6{right:144px;bottom:0;width:32px;height:32px}
+		.button-b7{right:96px;bottom:0;width:32px;height:32px}
+		.button-b8{right:48px;bottom:0;width:32px;height:32px}
+		.button-b9{right:0;bottom:0;width:32px;height:32px}
+
+		.bind-container{position:fixed;box-shadow:#000 0 0 5px}
+		.bind{border:1px solid gray;border-right:none;height:20px;width:100px}
+		.bind-line{position:fixed;width:1px;height:1px;background:gray;box-shadow:gray 0 0 3px}
+		.bind-container a{border:1px solid gray;border-left:none;color:#fff;background:red;text-decoration:none;position:relative;top:1px;font-size:13px;cursor:pointer}
+		.mobile-preview{position:fixed;top:50%;left:calc(50% - 320px);top:calc(50% - 180px);border:0;width:640px;height:360px}
+
+    </style>
+</head>
+<body>
+<div class="specific specific-desktop">
+    <h1 style="position:fixed;top:calc(50% - 230px);left:calc(50% - 320px)">Mobile Controller
+        <small>by timmyRS</small>
+    </h1>
+    <iframe class="mobile-preview" src="/#mobilepreview"><p>Loading Preview... (Requires iframe compatibility)</p>
+    </iframe>
+    <div class="bind-line" style="top:calc(50% + 166px);left:calc(50% - 80px);height:25px"></div>
+    <div class="bind-line" style="top:calc(50% + 166px);left:calc(50% - 32px);height:50px"></div>
+    <div class="bind-line" style="top:calc(50% + 166px);left:calc(50% + 16px);height:80px"></div>
+    <div class="bind-line" style="top:calc(50% + 166px);left:calc(50% + 64px);height:25px"></div>
+    <div class="bind-line" style="top:calc(50% + 166px);left:calc(50% + 112px);height:50px"></div>
+    <div class="bind-line" style="top:calc(50% + 166px);left:calc(50% + 160px);height:80px"></div>
+    <div class="bind-line" style="top:calc(50% + 166px);left:calc(50% + 208px);height:25px"></div>
+    <div class="bind-line" style="top:calc(50% + 166px);left:calc(50% + 256px);height:50px"></div>
+    <div class="bind-line" style="top:calc(50% + 166px);left:calc(50% + 304px);height:80px"></div>
+    <div class="bind-container" style="top:calc(50% - 90px);left:calc(50% - 215px)"><input class="bind bind-lu"><a
+            onclick="unsetKey(this);">&nbsp;x&nbsp;</a></div>
+    <div class="bind-container" style="top:calc(50% - 10px);left:calc(50% - 295px)"><input class="bind bind-ll"><a
+            onclick="unsetKey(this);">&nbsp;x&nbsp;</a></div>
+    <div class="bind-container" style="top:calc(50% + 70px);left:calc(50% - 215px)"><input class="bind bind-ld"><a
+            onclick="unsetKey(this);">&nbsp;x&nbsp;</a></div>
+    <div class="bind-container" style="top:calc(50% - 10px);left:calc(50% - 135px)"><input class="bind bind-lr"><a
+            onclick="unsetKey(this);">&nbsp;x&nbsp;</a></div>
+    <div class="bind-container" style="top:calc(50% - 75px);left:calc(50% + 105px)"><input class="bind bind-ru"><a
+            onclick="unsetKey(this);">&nbsp;x&nbsp;</a></div>
+    <div class="bind-container" style="top:calc(50% - 10px);left:calc(50% + 40px)"><input class="bind bind-rl"><a
+            onclick="unsetKey(this);">&nbsp;x&nbsp;</a></div>
+    <div class="bind-container" style="top:calc(50% + 55px);left:calc(50% + 105px)"><input class="bind bind-rd"><a
+            onclick="unsetKey(this);">&nbsp;x&nbsp;</a></div>
+    <div class="bind-container" style="top:calc(50% - 10px);left:calc(50% + 175px)"><input class="bind bind-rr"><a
+            onclick="unsetKey(this);">&nbsp;x&nbsp;</a></div>
+    <div class="bind-container" style="top:calc(50% + 189px);left:calc(50% - 113px)"><input class="bind bind-b1"><a
+            onclick="unsetKey(this);">&nbsp;x&nbsp;</a></div>
+    <div class="bind-container" style="top:calc(50% + 216px);left:calc(50% - 65px)"><input class="bind bind-b2"><a
+            onclick="unsetKey(this);">&nbsp;x&nbsp;</a></div>
+    <div class="bind-container" style="top:calc(50% + 243px);left:calc(50% - 17px)"><input class="bind bind-b3"><a
+            onclick="unsetKey(this);">&nbsp;x&nbsp;</a></div>
+    <div class="bind-container" style="top:calc(50% + 189px);left:calc(50% + 31px)"><input class="bind bind-b4"><a
+            onclick="unsetKey(this);">&nbsp;x&nbsp;</a></div>
+    <div class="bind-container" style="top:calc(50% + 216px);left:calc(50% + 79px)"><input class="bind bind-b5"><a
+            onclick="unsetKey(this);">&nbsp;x&nbsp;</a></div>
+    <div class="bind-container" style="top:calc(50% + 243px);left:calc(50% + 127px)"><input class="bind bind-b6"><a
+            onclick="unsetKey(this);">&nbsp;x&nbsp;</a></div>
+    <div class="bind-container" style="top:calc(50% + 189px);left:calc(50% + 175px)"><input class="bind bind-b7"><a
+            onclick="unsetKey(this);">&nbsp;x&nbsp;</a></div>
+    <div class="bind-container" style="top:calc(50% + 216px);left:calc(50% + 223px)"><input class="bind bind-b8"><a
+            onclick="unsetKey(this);">&nbsp;x&nbsp;</a></div>
+    <div class="bind-container" style="top:calc(50% + 243px);left:calc(50% + 272px)"><input class="bind bind-b9"><a
+            onclick="unsetKey(this);">&nbsp;x&nbsp;</a></div>
+</div>
+<div class="specific specific-mobile">
+    <div class="button button-lu"></div>
+    <div class="button button-ll"></div>
+    <div class="button button-ld"></div>
+    <div class="button button-lr"></div>
+    <div class="button button-ru"></div>
+    <div class="button button-rl"></div>
+    <div class="button button-rd"></div>
+    <div class="button button-rr"></div>
+    <div class="button button-b1"></div>
+    <div class="button button-b2"></div>
+    <div class="button button-b3"></div>
+    <div class="button button-b4"></div>
+    <div class="button button-b5"></div>
+    <div class="button button-b6"></div>
+    <div class="button button-b7"></div>
+    <div class="button button-b8"></div>
+    <div class="button button-b9"></div>
+    <div class="warning warning-fullscreen"><p><strong>Tap anywhere</strong> to initiate <strike>self
+        detruction</strike> fullscreen.</p></div>
+    <div class="warning warning-portrait"><p>Please <strong>rotate your mobile</strong> into landscape mode.</p></div>
+</div>
+<script src="/jquery.js"></script>
+<script>
+		var keyCodes={0:"NONE",3:"break",8:"backspace / delete",9:"tab",12:'clear',13:"enter",16:"shift",17:"ctrl",18:"alt",19:"pause/break",20:"caps lock",27:"escape",32:"spacebar",33:"page up",34:"page down",35:"end",36:"home",37:"left arrow",38:"up arrow",39:"right arrow",40:"down arrow",41:"select",42:"print",43:"execute",44:"Print Screen",45:"insert",46:"delete",48:"0",49:"1",50:"2",51:"3",52:"4",53:"5",54:"6",55:"7",56:"8",57:"9",58:":",59:"semicolon (firefox), equals",60:"<",61:"equals (firefox)",63:"ß",64:"@ (firefox)",65:"a",66:"b",67:"c",68:"d",69:"e",70:"f",71:"g",72:"h",73:"i",74:"j",75:"k",76:"l",77:"m",78:"n",79:"o",80:"p",81:"q",82:"r",83:"s",84:"t",85:"u",86:"v",87:"w",88:"x",89:"y",90:"z",91:"Windows Key / Left ⌘ / Chromebook Search key",92:"right window key",93:"Windows Menu / Right ⌘",96:"numpad 0",97:"numpad 1",98:"numpad 2",99:"numpad 3",100:"numpad 4",101:"numpad 5",102:"numpad 6",103:"numpad 7",104:"numpad 8",105:"numpad 9",106:"multiply",107:"add",108:"numpad period (firefox)",109:"subtract",110:"decimal point",111:"divide",112:"f1",113:"f2",114:"f3",115:"f4",116:"f5",117:"f6",118:"f7",119:"f8",120:"f9",121:"f10",122:"f11",123:"f12",124:"f13",125:"f14",126:"f15",127:"f16",128:"f17",129:"f18",130:"f19",131:"f20",132:"f21",133:"f22",134:"f23",135:"f24",144:"num lock",145:"scroll lock",160:"^",161:'!',163:"#",164:'$',165:'ù',166:"page backward",167:"page forward",169:"closing paren (AZERTY)",170:'*',171:"~ + * key",173:"minus (firefox), mute/unmute",174:"decrease volume level",175:"increase volume level",176:"next",177:"previous",178:"stop",179:"play/pause",180:"e-mail",181:"mute/unmute (firefox)",182:"decrease volume level (firefox)",183:"increase volume level (firefox)",186:"semi-colon / ñ",187:"equal sign",188:"comma",189:"dash",190:"period",191:"forward slash / ç",192:"grave accent / ñ / æ",193:"?, / or °",194:"numpad period (chrome)",219:"open bracket",220:"back slash",221:"close bracket / å",222:"single quote / ø",223:"`",224:"left or right ⌘ key (firefox)",225:"altgr",226:"< /git >",230:"GNOME Compose Key",231:"ç",233:"XF86Forward",234:"XF86Back",255:"toggle touchpad"},mobile=!!navigator.userAgent.match(/iphone|android|blackberry/ig)||!1,pushing=false,target="",keys=[],vibrated=false;
+		document.addEventListener("DOMContentLoaded",function()
+		{
+			if(window.location.hash.toString().replace("#","")=="mobilepreview")
+			{
+				$(".warning-fullscreen").hide();
+				$(".specific-mobile").show();
+			}
+			else if(mobile)
+			{
+				$(".specific-mobile, .button").show().on("touchstart touchmove touchend",function(e)
+				{
+					e=e.originalEvent;
+					var changed=false;
+					$(e.touches).each(function()
+					{
+						var c=document.elementFromPoint(this.clientX,this.clientY),n=true;
+						if(c!=null)
+						{
+							c=c.className;
+							if(c.substr(0,14)=="button button-")
+							{
+								c=c.substr(14);
+								$(keys).each(function()
+								{
+									if(this==c)
+									{
+										n=false;
+									}
+								});
+								if(n)
+								{
+									keys.push(c);
+									changed=true;
+								}
+							} else
+							{
+								if(!vibrated&&navigator.vibrate)
+								{
+									if(navigator.vibrate)
+									{
+										vibrated=true;
+										navigator.vibrate(50);
+										window.setTimeout(function()
+										{
+											vibrated=false;
+										},50);
+									}
+								}
+							}
+						}
+					});
+					var rem=keys;
+					for(key in rem)
+					{
+						var o=true,k=rem[key];
+						$(e.touches).each(function()
+						{
+							var c=document.elementFromPoint(this.clientX,this.clientY);
+							if(c!=null)
+							{
+								c=c.className;
+								if(c.substr(0,14)=="button button-")
+								{
+									c=c.substr(14);
+									if(c==k)
+									{
+										o=false;
+									}
+								}
+							}
+						});
+						if(o)
+						{
+							keys.splice(key,1);
+							changed=true;
+						}
+					}
+					if(changed)
+					{
+						$.ajax("/u/"+keys.join("/"));
+					}
+				});
+				$(".warning-fullscreen").on("click",function()
+				{
+					var elm=document.documentElement;
+					if(elm.requestFullscreen)
+					{
+						elm.requestFullscreen();
+					}
+					else if(elm.mozRequestFullScreen)
+					{
+						elm.mozRequestFullScreen();
+					}
+					else if(elm.webkitRequestFullScreen)
+					{
+						elm.webkitRequestFullScreen();
+					}
+				});
+				$(window).resize(function()
+				{
+					if(window.innerHeight==screen.height)
+					{
+						$(".warning-fullscreen").hide();
+					} else
+					{
+						$(".warning-fullscreen").show();
+					}
+				}).resize();
+			} else
+			{
+				$(".specific-desktop").show();
+				renderKeys();
+				$(".bind").on("keydown",function(e)
+				{
+					e.preventDefault();
+					$.ajax("/key/"+e.target.className.substr(10)+"/"+e.keyCode).done(function()
+					{
+						renderKeys();
+						var next=false;
+						$(".bind").each(function()
+						{
+							if(this.className==e.target.className)
+							{
+								next=true;
+							} else if(next)
+							{
+								next=false;
+								this.focus();
+							}
+						});
+					});
+				});
+			}
+		});
+
+		function renderKeys()
+		{
+			$.ajax("/keys").done(function(keys)
+			{
+				for(key in keys)
+				{
+					$(".bind-"+key).val((keyCodes[keys[key]]||keys[key]).toString().toUpperCase());
+				}
+			});
+		}
+
+		function unsetKey(elm)
+		{
+			$.ajax("/key/"+$(elm).parent().find(".bind")[0].className.substr(10)).done(function()
+			{
+				renderKeys();
+			});
+		}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+body{font-family:sans-serif;padding:0 10px;margin:0;text-align:center;background:#000;color:#fff}
+h1{font-weight:300}h1 small{font-size:20px}h1,p{margin:5px 0}
+.offline-notice{z-index:20;position:fixed;bottom:0;left:0;height:auto;width:auto;padding:2px;background:#fff;color:#000;display:none}
+.specific{display:none}
+
+.specific-mobile{position:fixed;top:0;left:0;width:100%;height:100%;background:#000}
+.warning{position:fixed;top:0;left:0;width:100%;height:100%;background:#000}
+.warning-fullscreen{z-index:9}.warning-portrait{z-index:10}@media(orientation:landscape){.warning-portrait{display:none}}
+.button{z-index:2;position:fixed;background:#fff}
+.button-lu{left:calc(25% - 32px);top:14%;width:64px;height:27%}
+.button-ll{left:5%;top:calc(50% - 32px);width:15%;height:64px}
+.button-ld{left:calc(25% - 32px);bottom:14%;width:64px;height:27%}
+.button-lr{left:30%;top:calc(50% - 32px);width:15%;height:64px}
+.button-ru{right:calc(25% - 32px);top:calc(50% - 96px);width:64px;height:64px}
+.button-rl{right:calc(25% + 32px);top:calc(50% - 32px);width:64px;height:64px}
+.button-rd{right:calc(25% - 32px);bottom:calc(50% - 96px);width:64px;height:64px}
+.button-rr{right:calc(25% - 96px);top:calc(50% - 32px);width:64px;height:64px}
+.button-b1{right:384px;bottom:0;width:32px;height:32px}
+.button-b2{right:336px;bottom:0;width:32px;height:32px}
+.button-b3{right:288px;bottom:0;width:32px;height:32px}
+.button-b4{right:240px;bottom:0;width:32px;height:32px}
+.button-b5{right:192px;bottom:0;width:32px;height:32px}
+.button-b6{right:144px;bottom:0;width:32px;height:32px}
+.button-b7{right:96px;bottom:0;width:32px;height:32px}
+.button-b8{right:48px;bottom:0;width:32px;height:32px}
+.button-b9{right:0;bottom:0;width:32px;height:32px}
+
+.bind-container{position:fixed;box-shadow:gray 0 1px 3px}
+.bind{border:1px solid gray;border-right:none;height:19px;width:100px}
+.bind-line{position:fixed;width:1px;height:1px;background:gray;box-shadow:gray 0 0 3px}
+.bind-container a{border:1px solid gray;border-left:none;color:#fff;background:red;text-decoration:none;position:relative;font-size:15px;cursor:pointer;top:1px;padding:2px 0}
+.mobile-preview{position:fixed;top:50%;left:calc(50% - 320px);top:calc(50% - 180px);border:0;width:640px;height:360px}

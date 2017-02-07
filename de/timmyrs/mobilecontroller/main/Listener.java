@@ -97,13 +97,6 @@ public class Listener extends Thread
 				KeyResolver.save();
 				return new String[]{"200", "-", "text/plain"};
 			}
-		} else if(path.equals("/jquery.js"))
-		{
-			String s = Main.readResource("html/jquery.js");
-			if(s != null)
-			{
-				return new String[]{"200", s, "text/html"};
-			}
 		} else if(path.equals("/"))
 		{
 			String s = Main.readResource("html/index.html");
@@ -111,6 +104,30 @@ public class Listener extends Thread
 			{
 				return new String[]{"200", s, "text/html"};
 			}
+		} else if(path.equals("/style.css"))
+		{
+			String s = Main.readResource("html/style.css");
+			if(s != null)
+			{
+				return new String[]{"200", s, "text/css"};
+			}
+		} else if(path.equals("/script.js"))
+		{
+			String s = Main.readResource("html/script.js");
+			if(s != null)
+			{
+				return new String[]{"200", s, "text/javascript"};
+			}
+		} else if(path.equals("/jquery.js"))
+		{
+			String s = Main.readResource("html/jquery.js");
+			if(s != null)
+			{
+				return new String[]{"200", s, "text/javascript"};
+			}
+		} else if(path.equals("/ping"))
+		{
+			return new String[]{"200", "-", "text/plain"};
 		}
 		return new String[]{"500", "Unable to serve this request.", "text/plain"};
 	}

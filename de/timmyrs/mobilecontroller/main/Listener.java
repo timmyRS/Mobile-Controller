@@ -12,18 +12,11 @@ public class Listener extends Thread
 {
 	private static ServerSocket socket;
 
-	protected Listener()
+	protected Listener() throws java.io.IOException
 	{
-		try
-		{
-			Listener.socket = new ServerSocket(56839);
-			Thread t = new Thread(this);
-			t.start();
-		} catch(Exception e)
-		{
-			Main.log("! Couldn't initiate listening, is port 56839 already in use?");
-			Runtime.getRuntime().exit(0);
-		}
+		Listener.socket = new ServerSocket(56839);
+		Thread t = new Thread(this);
+		t.start();
 	}
 
 	private static String[] handleRequest(String path)

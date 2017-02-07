@@ -13,22 +13,22 @@ import java.util.Enumeration;
 
 public class Main
 {
-	private static final String version = "1.3";
+	private static final String version = "1.3.1-Dev";
 	protected static boolean debug = false;
 	protected static ArrayList<KeyPresser> presser = new ArrayList<>();
 
 	public static void main(String[] args)
 	{
-		KeyResolver.load();
-		new Listener();
 		Main.log("i This is Mobile Controller " + version + " by timmyRS");
 		if(args.length > 0 && args[0].equals("--debug"))
 		{
 			debug = true;
 			Main.log("i You are in debug mode");
 		}
+		KeyResolver.load();
 		try
 		{
+			new Listener();
 			if(Main.debug || ! Desktop.isDesktopSupported())
 			{
 				Main.log("i Navigate to http://localhost:56839 on this device for management");

@@ -8,13 +8,13 @@ h1{font-weight:300}h1 small{font-size:20px}h1,p{margin:5px 0}
 .warning-fullscreen{z-index:9}.warning-portrait{z-index:10}@media(orientation:landscape){.warning-portrait{display:none}}
 .button{z-index:2;position:fixed;background:#fff}
 .button-lu{left:calc(25% - 32px);top:14%;width:64px;height:27%}
-.button-ll{left:5%;top:calc(50% - 32px);width:15%;height:64px}
+.button-ll{left:5%;top:calc(50% - 32px);width:20%;height:64px}
 .button-ld{left:calc(25% - 32px);bottom:14%;width:64px;height:27%}
-.button-lr{left:30%;top:calc(50% - 32px);width:15%;height:64px}
+.button-lr{left:25%;top:calc(50% - 32px);width:20%;height:64px}
 .button-ru{right:calc(25% - 32px);top:calc(50% - 96px);width:64px;height:64px}
-.button-rl{right:calc(25% + 32px);top:calc(50% - 32px);width:64px;height:64px}
+.button-rl{right:25%;top:calc(50% - 32px);width:96px;height:64px}
 .button-rd{right:calc(25% - 32px);bottom:calc(50% - 96px);width:64px;height:64px}
-.button-rr{right:calc(25% - 96px);top:calc(50% - 32px);width:64px;height:64px}
+.button-rr{right:calc(25% - 96px);top:calc(50% - 32px);width:96px;height:64px}
 .button-b1{right:384px;bottom:0;width:32px;height:32px}
 .button-b2{right:336px;bottom:0;width:32px;height:32px}
 .button-b3{right:288px;bottom:0;width:32px;height:32px}

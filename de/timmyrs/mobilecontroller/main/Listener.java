@@ -21,113 +21,122 @@ public class Listener extends Thread
 
 	private static String[] handleRequest(String path)
 	{
-		if(path.startsWith("/u/"))
+		try
 		{
-			//Main.log(path.substring(3).replaceAll("/", "\\, "));
-			String[] keys = path.substring(3).split("/");
-			ArrayList<KeyPresser> rem = (ArrayList) Main.presser.clone();
-			for(KeyPresser presser : rem)
+			if(path.startsWith("/u/"))
 			{
-				boolean has = false;
-				for(String k : keys)
+				//Main.log(path.substring(3).replaceAll("/", "\\, "));
+				String[] keys = path.substring(3).split("/");
+				ArrayList<KeyPresser> rem = (ArrayList) Main.presser.clone();
+				for(KeyPresser presser : rem)
 				{
-					if(! k.equals("") && KeyResolver.keys.get(k) == presser.getKey())
+					boolean has = false;
+					for(String k : keys)
 					{
-						has = true;
-						break;
+						if(! k.equals("") && KeyResolver.keys.get(k) == presser.getKey())
+						{
+							has = true;
+							break;
+						}
+					}
+					if(! has)
+					{
+						presser.end();
 					}
 				}
-				if(! has)
+				for(String key : keys)
 				{
-					presser.end();
-				}
-			}
-			for(String key : keys)
-			{
-				if(key.equals(""))
-				{
-					continue;
-				}
-				int k = KeyResolver.keys.get(key);
-				boolean exists = false;
-				for(KeyPresser presser : Main.presser)
-				{
-					if(presser.getKey() == k)
+					if(key.equals(""))
 					{
-						exists = true;
-						break;
+						continue;
+					}
+					int k = KeyResolver.keys.get(key);
+					boolean exists = false;
+					for(KeyPresser presser : Main.presser)
+					{
+						if(presser.getKey() == k)
+						{
+							exists = true;
+							break;
+						}
+					}
+					if(! exists)
+					{
+						if(k == 13)
+						{
+							Main.presser.add(new KeyPresser(KeyEvent.VK_ENTER));
+						} else if(k != 0)
+						{
+							Main.presser.add(new KeyPresser(k));
+						}
 					}
 				}
-				if(! exists)
-				{
-					if(k == 13)
-					{
-						Main.presser.add(new KeyPresser(KeyEvent.VK_ENTER));
-					} else if(k != 0)
-					{
-						Main.presser.add(new KeyPresser(k));
-					}
-				}
-			}
-			return new String[]{"200", "-", "text/plain"};
-		} else if(path.equals("/keys"))
-		{
-			String json = "{";
-			for(String key : KeyResolver.keys.keySet())
-			{
-				json += "\"" + key + "\":" + KeyResolver.keys.get(key) + ",";
-			}
-			json = json.substring(0, json.length() - 1);
-			if(json.length() > 0)
-			{
-				json += "}";
-			}
-			return new String[]{"200", json, "application/json"};
-		} else if(path.startsWith("/key/"))
-		{
-			String[] s = path.substring(5).split("/");
-			if(s.length == 2)
-			{
-				KeyResolver.keys.replace(s[0], Integer.valueOf(s[1]));
-				KeyResolver.save();
 				return new String[]{"200", "-", "text/plain"};
-			} else if(s.length == 1)
+			} else if(path.equals("/keys"))
 			{
-				KeyResolver.keys.replace(s[0], 0);
-				KeyResolver.save();
+				String json = "{";
+				for(String key : KeyResolver.keys.keySet())
+				{
+					json += "\"" + key + "\":" + KeyResolver.keys.get(key) + ",";
+				}
+				json = json.substring(0, json.length() - 1);
+				if(json.length() > 0)
+				{
+					json += "}";
+				}
+				return new String[]{"200", json, "application/json"};
+			} else if(path.startsWith("/key/"))
+			{
+				String[] s = path.substring(5).split("/");
+				if(s.length == 2)
+				{
+					KeyResolver.keys.replace(s[0], Integer.valueOf(s[1]));
+					KeyResolver.save();
+					return new String[]{"200", "-", "text/plain"};
+				} else if(s.length == 1)
+				{
+					KeyResolver.keys.replace(s[0], 0);
+					KeyResolver.save();
+					return new String[]{"200", "-", "text/plain"};
+				}
+			} else if(path.equals("/"))
+			{
+				String s = Main.readResource("html/index.html");
+				if(s != null)
+				{
+					return new String[]{"200", s, "text/html"};
+				}
+			} else if(path.equals("/style.css"))
+			{
+				String s = Main.readResource("html/style.css");
+				if(s != null)
+				{
+					return new String[]{"200", s, "text/css"};
+				}
+			} else if(path.equals("/script.js"))
+			{
+				String s = Main.readResource("html/script.js");
+				if(s != null)
+				{
+					return new String[]{"200", s, "text/javascript"};
+				}
+			} else if(path.equals("/jquery.js"))
+			{
+				String s = Main.readResource("html/jquery.js");
+				if(s != null)
+				{
+					return new String[]{"200", s, "text/javascript"};
+				}
+			} else if(path.equals("/ping"))
+			{
 				return new String[]{"200", "-", "text/plain"};
 			}
-		} else if(path.equals("/"))
+		} catch(Exception e)
 		{
-			String s = Main.readResource("html/index.html");
-			if(s != null)
+			if(Main.debug)
 			{
-				return new String[]{"200", s, "text/html"};
+				e.printStackTrace();
 			}
-		} else if(path.equals("/style.css"))
-		{
-			String s = Main.readResource("html/style.css");
-			if(s != null)
-			{
-				return new String[]{"200", s, "text/css"};
-			}
-		} else if(path.equals("/script.js"))
-		{
-			String s = Main.readResource("html/script.js");
-			if(s != null)
-			{
-				return new String[]{"200", s, "text/javascript"};
-			}
-		} else if(path.equals("/jquery.js"))
-		{
-			String s = Main.readResource("html/jquery.js");
-			if(s != null)
-			{
-				return new String[]{"200", s, "text/javascript"};
-			}
-		} else if(path.equals("/ping"))
-		{
-			return new String[]{"200", "-", "text/plain"};
 		}
 		return new String[]{"500", "Unable to serve this request.", "text/plain"};
 	}
@@ -155,10 +164,6 @@ public class Listener extends Thread
 				}
 			} catch(Exception e)
 			{
-				if(Main.debug)
-				{
-					e.printStackTrace();
-				}
 			}
 		}
 	}

@@ -12,7 +12,7 @@ public class KeyResolver
 		keys.clear();
 		HashMap<String,Integer> defaultKeys = new HashMap<>();
 		defaultKeys.put("lu", 38);
-		defaultKeys.put("ll", 39);
+		defaultKeys.put("ll", 0);
 		defaultKeys.put("ld", 40);
 		defaultKeys.put("lr", 37);
 		defaultKeys.put("ru", 32);

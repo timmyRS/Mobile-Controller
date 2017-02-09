@@ -114,7 +114,7 @@ document.addEventListener("DOMContentLoaded",function()
         renderKeys();
         $("#layout").on("change",function()
         {
-            $.ajax({"url":"/config/"+this.value,"timeout":3000}).done(function()
+            $.ajax({"url":"/config/"+this.value.split(" ").join("_"),"timeout":3000}).done(function()
             {
                renderKeys();
             }).fail(function()

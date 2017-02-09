@@ -14,7 +14,7 @@ import java.util.Enumeration;
 
 public class Main
 {
-	private static final String version = "1.4.1-Dev";
+	private static final String version = "1.5-Dev";
 	protected static boolean debug = false;
 	protected static ArrayList<KeyPresser> presser = new ArrayList<>();
 

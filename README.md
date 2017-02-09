@@ -13,5 +13,5 @@ A Java Application that allows you to use your mobile as a fast controller for g
 
 + [Create a new issue](https://github.com/timmyrs/Mobile-Controller/issues/new)
 + Write a descriptive title
-+ Copy & Paste the contents of your `config.txt`
++ Copy & Paste the contents of your `layout.txt`
 + Submit and wait for a reply

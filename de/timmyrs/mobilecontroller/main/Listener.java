@@ -72,7 +72,7 @@ public class Listener extends Thread
 					}
 				}
 				return new String[]{"200", "-", "text/plain"};
-			} else if(path.startsWith("/config/"))
+			} else if(path.startsWith("/layout/"))
 			{
 				String name = path.substring(8);
 				if(name.equals("Default"))
@@ -83,7 +83,7 @@ public class Listener extends Thread
 					KeyResolver.loadFromText("", true);
 				} else
 				{
-					KeyResolver.loadFromText(Main.readResource("configs/" + name + ".txt"), true);
+					KeyResolver.loadFromText(Main.readResource("layouts/" + name + ".txt"), true);
 				}
 				KeyResolver.save();
 				return new String[]{"200", "-", "text/plain"};

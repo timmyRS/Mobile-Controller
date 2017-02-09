@@ -70,7 +70,7 @@ public class Main
 			debug = true;
 			Main.log("i You are in debug mode");
 		}
-		KeyResolver.loadFromText(Main.readFile("config.txt"), false);
+		KeyResolver.loadFromText(Main.readFile("layout.txt"), false);
 		try
 		{
 			new Listener();

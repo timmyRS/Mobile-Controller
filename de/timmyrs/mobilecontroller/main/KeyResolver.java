@@ -59,7 +59,7 @@ public class KeyResolver
 		if(fixed > 0)
 		{
 			save();
-			Main.log("i Removed " + fixed + " useless entries from config");
+			Main.log("i Removed " + fixed + " useless keys from layout");
 			fixed = 0;
 		}
 		for(String k : defaultKeys.keySet())
@@ -79,7 +79,7 @@ public class KeyResolver
 		if(fixed > 0)
 		{
 			save();
-			Main.log("i Added " + fixed + " required entries to config");
+			Main.log("i Added " + fixed + " required key to layout");
 		}
 	}
 
@@ -87,7 +87,7 @@ public class KeyResolver
 	{
 		try
 		{
-			PrintWriter writer = new PrintWriter("config.txt", "UTF-8");
+			PrintWriter writer = new PrintWriter("layout.txt", "UTF-8");
 			for(String key : keys.keySet())
 			{
 				writer.println(key + "=" + keys.get(key));

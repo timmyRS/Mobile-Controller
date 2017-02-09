@@ -4,7 +4,7 @@ A Java Application that allows you to use your mobile as a fast controller for g
 
 ## Setup
 
-+ [Download the newest "Mobile.Controller.zip"](https://github.com/timmyrs/Mobile-Controller/releases/download/1.4/Mobile.Controller.zip)
++ Download the latest version [[1.4 (Stable)]](https://github.com/timmyrs/Mobile-Controller/releases/download/1.4/Mobile.Controller.zip) [[1.5-Dev]](https://github.com/timmyrs/Mobile-Controller/releases/download/1.5-Dev/Mobile.Controller.zip)
 + Move the "Mobile Controller" folder in the zip to your desktop
 + Run the `start.bat` or `start.sh`, depending on your OS
 + Follow the instructions given by the program

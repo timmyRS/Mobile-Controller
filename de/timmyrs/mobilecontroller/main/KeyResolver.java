@@ -59,7 +59,7 @@ public class KeyResolver
 		if(fixed > 0)
 		{
 			save();
-			Main.log("i Removed " + fixed + " useless keys from layout");
+			Main.log("i Removed " + fixed + " useless key(s) from layout");
 			fixed = 0;
 		}
 		for(String k : defaultKeys.keySet())
@@ -79,7 +79,7 @@ public class KeyResolver
 		if(fixed > 0)
 		{
 			save();
-			Main.log("i Added " + fixed + " required key to layout");
+			Main.log("i Added " + fixed + " required key(s) to layout");
 		}
 	}
 

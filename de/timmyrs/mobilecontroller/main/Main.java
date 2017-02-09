@@ -14,11 +14,11 @@ import java.util.Enumeration;
 
 public class Main
 {
-	private static final String version = "1.4-Dev";
+	private static final String version = "1.4";
 	protected static boolean debug = false;
 	protected static ArrayList<KeyPresser> presser = new ArrayList<>();
 
-	protected static String readBufferedReader(BufferedReader br)
+	private static String readBufferedReader(BufferedReader br)
 	{
 		String ret = null;
 		try
@@ -70,11 +70,11 @@ public class Main
 			debug = true;
 			Main.log("i You are in debug mode");
 		}
-		KeyResolver.load();
+		KeyResolver.loadFromText(Main.readFile("config.txt"), false);
 		try
 		{
 			new Listener();
-			if(Main.debug || ! Desktop.isDesktopSupported())
+			if(Main.debug || !Desktop.isDesktopSupported())
 			{
 				Main.log("i Navigate to http://localhost:56839 on this device for management");
 			} else
@@ -93,7 +93,7 @@ public class Main
 					InetAddress addr = a.nextElement();
 					if(addr.getHostName().equals(addr.getHostAddress()))
 					{
-						if(addr.getHostAddress().startsWith("10.") || (addr.getHostAddress().startsWith("127.") && ! addr.getHostAddress().startsWith("127.0.")) || addr.getHostAddress().startsWith("192.168."))
+						if(addr.getHostAddress().startsWith("10.") || (addr.getHostAddress().startsWith("127.") && !addr.getHostAddress().startsWith("127.0.")) || addr.getHostAddress().startsWith("192.168."))
 						{
 							i++;
 							Main.log("i We are http://" + addr.getHostAddress() + ":56839 in a local network");

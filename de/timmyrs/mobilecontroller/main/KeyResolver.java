@@ -7,7 +7,7 @@ public class KeyResolver
 {
 	protected static HashMap<String,Integer> keys = new HashMap<>();
 
-	protected static void load()
+	protected static void loadFromText(String text, boolean defaultToNone)
 	{
 		keys.clear();
 		HashMap<String,Integer> defaultKeys = new HashMap<>();
@@ -30,11 +30,10 @@ public class KeyResolver
 		defaultKeys.put("b7", 55);
 		defaultKeys.put("b8", 56);
 		defaultKeys.put("b9", 57);
-		String text = Main.readFile("config.txt");
 		int fixed = 0;
 		if(text != null)
 		{
-			for(String line : Main.readFile("config.txt").split("\n"))
+			for(String line : text.split("\n"))
 			{
 				String[] arr = line.trim().split("=");
 				if(arr.length == 2)
@@ -65,10 +64,16 @@ public class KeyResolver
 		}
 		for(String k : defaultKeys.keySet())
 		{
-			if(! keys.containsKey(k))
+			if(!keys.containsKey(k))
 			{
-				keys.put(k, defaultKeys.get(k));
-				fixed++;
+				if(defaultToNone)
+				{
+					keys.put(k, 0);
+				} else
+				{
+					keys.put(k, defaultKeys.get(k));
+					fixed++;
+				}
 			}
 		}
 		if(fixed > 0)

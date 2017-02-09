@@ -33,13 +33,13 @@ public class Listener extends Thread
 					boolean has = false;
 					for(String k : keys)
 					{
-						if(! k.equals("") && KeyResolver.keys.get(k) == presser.getKey())
+						if(!k.equals("") && KeyResolver.keys.get(k) == presser.getKey())
 						{
 							has = true;
 							break;
 						}
 					}
-					if(! has)
+					if(!has)
 					{
 						presser.end();
 					}
@@ -60,7 +60,7 @@ public class Listener extends Thread
 							break;
 						}
 					}
-					if(! exists)
+					if(!exists)
 					{
 						if(k == 13)
 						{
@@ -71,6 +71,21 @@ public class Listener extends Thread
 						}
 					}
 				}
+				return new String[]{"200", "-", "text/plain"};
+			} else if(path.startsWith("/config/"))
+			{
+				String name = path.substring(8);
+				if(name.equals("Default"))
+				{
+					KeyResolver.loadFromText("", false);
+				} else if(name.equals("Empty"))
+				{
+					KeyResolver.loadFromText("", true);
+				} else
+				{
+					KeyResolver.loadFromText(Main.readResource("configs/" + name + ".txt"), true);
+				}
+				KeyResolver.save();
 				return new String[]{"200", "-", "text/plain"};
 			} else if(path.equals("/keys"))
 			{

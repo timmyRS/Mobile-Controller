@@ -25,6 +25,7 @@ h1{font-weight:300}h1 small{font-size:20px}h1,p{margin:5px 0}
 .button-b8{right:48px;bottom:0;width:32px;height:32px}
 .button-b9{right:0;bottom:0;width:32px;height:32px}
 
+#layout{font-size:16px;position:fixed;top:calc(50% - 212px);left:calc(50% + 158px)}
 .bind-container{position:fixed;box-shadow:gray 0 1px 3px}
 .bind{border:1px solid gray;border-right:none;height:19px;width:100px}
 .bind-line{position:fixed;width:1px;height:1px;background:gray;box-shadow:gray 0 0 3px}

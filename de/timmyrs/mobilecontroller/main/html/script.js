@@ -112,6 +112,18 @@ document.addEventListener("DOMContentLoaded",function()
     {
         $(".specific-desktop").show();
         renderKeys();
+        $("#layout").on("change",function()
+        {
+            $.ajax({"url":"/config/"+this.value,"timeout":3000}).done(function()
+            {
+               renderKeys();
+            }).fail(function()
+            {
+                $(".offline-notice").show();
+                offlineTimer();
+            });
+            $("#layout").html($("#layout").html());
+        });
         $(".bind").on("keydown",function(e)
         {
             e.preventDefault();

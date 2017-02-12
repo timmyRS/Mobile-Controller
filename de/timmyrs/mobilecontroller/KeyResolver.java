@@ -1,4 +1,4 @@
-package de.timmyrs.mobilecontroller.main;
+package de.timmyrs.mobilecontroller;
 
 import java.io.PrintWriter;
 import java.util.HashMap;

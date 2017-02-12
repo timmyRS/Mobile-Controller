@@ -1,2 +1,2 @@
 Manifest-Version: 1.0
-Main-Class: de.timmyrs.mobilecontroller.main.Main
+Main-Class: de.timmyrs.mobilecontroller.Main
